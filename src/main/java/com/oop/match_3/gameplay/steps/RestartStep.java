@@ -1,19 +1,12 @@
 package com.oop.match_3.gameplay.steps;
 
-import com.oop.match_3.gameplay.phases.Game;
+import com.oop.match_3.gameplay.phases.GameADT;
 
 public class RestartStep extends Step {
+    public RestartStep () {}
 
-    public RestartStep Step() {
+    public String print() {}
 
-    }
-
-    public String print() {
-
-    }
-
-    // постусловие: состояние `game` сброшено к начальному, `game` переведён в StartPhase
-    public void execute(Game game) {
-
-    }
+    // постусловие: из родительского класса + `game` переведена в StartPhase
+    public void execute(final GameADT game) {}
 }

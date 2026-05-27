@@ -4,21 +4,16 @@ import com.oop.match_3.gameplay.steps.Step;
 
 public class SwapPhase extends Phase {
 
-    public SwapPhase Phase(Game game) {
-
+    public SwapPhase(final GameADT game) {
+        super(game);
     }
 
-    // постусловие: Game переведён в FindCombosPhase
-    public void advance() {
+    // постусловие: из родительского класса + Game переведена в FindCombosPhase
+    public void advance() {}
 
-    }
+    public void accept(final Step step) {}
 
-    // постусловие: статус ACCEPT_WRONG_PHASE
-    public void accept(Step step) {
+    public int getAdvanceStatus() {}
 
-    }
-
-    public int getAcceptStatus(){
-
-    }
+    public int getAcceptStatus() {}
 }

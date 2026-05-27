@@ -4,21 +4,16 @@ import com.oop.match_3.gameplay.steps.Step;
 
 public class StartPhase extends Phase {
 
-    public StartPhase Phase(Game game) {
-
+    public StartPhase(final GameADT game) {
+        super(game);
     }
 
-    // постусловие: Grid инициализирован случайными элементами, Game переведён в InputPhase
-    public void advance() {
+    // постусловие: из родительского класса + Game переведена в InputPhase
+    public void advance() {}
 
-    }
+    public void accept(final Step step) {}
 
-    // постусловие: статус ACCEPT_WRONG_PHASE
-    public void accept(Step step) {
+    public int getAdvanceStatus() {}
 
-    }
-
-    public int getAcceptStatus(){
-
-    }
+    public int getAcceptStatus() {}
 }

@@ -4,21 +4,16 @@ import com.oop.match_3.gameplay.steps.Step;
 
 public class GravityPhase extends Phase {
 
-    public GravityPhase Phase(Game game) {
-
+    public GravityPhase(final GameADT game) {
+        super(game);
     }
 
-    // постусловие: на Grid выполнена гравитация (Element.NONE в верхних позициях каждого столбца), Game переведён в RefillPhase
-    public void advance() {
+    // постусловие: из родительского класса + Game переведена в RefillPhase
+    public void advance() {}
 
-    }
+    public void accept(final Step step) {}
 
-    // постусловие: статус ACCEPT_WRONG_PHASE
-    public void accept(Step step) {
+    public int getAdvanceStatus() {}
 
-    }
-
-    public int getAcceptStatus(){
-
-    }
+    public int getAcceptStatus() {}
 }

@@ -4,23 +4,17 @@ import com.oop.match_3.gameplay.steps.Step;
 
 public class EndPhase extends Phase {
 
-    public EndPhase Phase(Game game) {
-
+    public EndPhase(GameADT game) {
+        super(game);
     }
 
-    // постусловие: без эффекта
-    public void advance() {
+    public void advance() {}
 
-    }
+    // постусловие: из родительского класса + если RestartStep - Game переведена в StartPhase,
+    // иначе если FinishStep - Game завершена
+    public void accept(Step step) {}
 
-    // постусловие: если `step` - RestartStep, Game переведён в StartPhase,
-    // иначе если `step` - FinishStep, игра завершена,
-    // иначе - статус ACCEPT_WRONG_PHASE
-    public void accept(Step step) {
+    public int getAdvanceStatus() {}
 
-    }
-
-    public int getAcceptStatus(){
-
-    }
+    public int getAcceptStatus() {}
 }

@@ -1,20 +1,13 @@
 package com.oop.match_3.gameplay.steps;
 
-import com.oop.match_3.field.Coords;
-import com.oop.match_3.gameplay.phases.Game;
+import com.oop.match_3.field.CoordsADT;
+import com.oop.match_3.gameplay.phases.GameADT;
 
 public class SwapStep extends Step {
+    public SwapStep(CoordsADT first, CoordsADT second) {}
 
-    public SwapStep Step(Coords coords1, Coords coords2) {
+    public String print() {}
 
-    }
-
-    public String print() {
-        return null;
-    }
-
-    // постусловие: на Grid выполнен swap, `game` переведён в SwapPhase
-    public void execute(Game game) {
-
-    }
+    // постусловие: из родительского класса + `game` переведена в SwapPhase
+    public void execute(final GameADT game) {}
 }

@@ -1,21 +1,15 @@
 package com.oop.match_3.statistics;
 
-import com.oop.match_3.field.Grid;
+import com.oop.match_3.field.GridADT;
+import com.oop.match_3.math.UnsignedIntADT;
 
 public class RemoveRowBonus extends Bonus {
-
     // конструктор
     // предусловие: `row` в пределах поля
-    public RemoveRowBonus Bonus(Integer row) {
+    public RemoveRowBonus(final UnsignedIntADT row) {}
 
-    }
-
-    public String print() {
-
-    }
+    public String print() {}
 
     // постусловие: все ячейки `grid` в ряду `row` получили значение Element.NONE
-    public void apply(Grid grid) {
-
-    }
+    public void apply(final GridADT grid) {}
 }

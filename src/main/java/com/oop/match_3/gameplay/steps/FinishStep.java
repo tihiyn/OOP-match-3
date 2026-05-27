@@ -1,19 +1,12 @@
 package com.oop.match_3.gameplay.steps;
 
-import com.oop.match_3.gameplay.phases.Game;
+import com.oop.match_3.gameplay.phases.GameADT;
 
 public class FinishStep extends Step {
+    public FinishStep() {}
 
-    public FinishStep Step() {
+    public String print() {}
 
-    }
-
-    public String print() {
-
-    }
-
-    // постусловие: `game` переведён в EndPhase
-    public void execute(Game game) {
-
-    }
+    // постусловие: из родительского класса + `game` переведена в EndPhase
+    public void execute(GameADT game) {}
 }

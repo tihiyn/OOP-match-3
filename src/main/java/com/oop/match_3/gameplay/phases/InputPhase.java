@@ -3,24 +3,17 @@ package com.oop.match_3.gameplay.phases;
 import com.oop.match_3.gameplay.steps.Step;
 
 public class InputPhase extends Phase {
-
-    public InputPhase Phase(Game game) {
-
+    public InputPhase(final GameADT game) {
+        super(game);
     }
 
-    // постусловие: без эффекта
-    public void advance() {
+    public void advance() {}
 
-    }
+    // постусловие: из родительского класса + если SwapStep - Game переведена в SwapPhase,
+    // если FinishStep - в EndPhase
+    public void accept(final Step step) {}
 
-    // постусловие: `step` выполнен (step.execute(game)),
-    // Game переведён в следующую фазу согласно типу Step,
-    // статус ACCEPT_OK
-    public void accept(Step step) {
+    public int getAdvanceStatus() {}
 
-    }
-
-    public int getAcceptStatus(){
-
-    }
+    public int getAcceptStatus() {}
 }
