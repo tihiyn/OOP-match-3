@@ -14,7 +14,11 @@ public class EndPhase extends Phase {
     // иначе если FinishStep - Game завершена
     public void accept(Step step) {}
 
-    public int getAdvanceStatus() {}
+    public int getAdvanceStatus() {
+        return ADVANCE_OK;
+    }
 
-    public int getAcceptStatus() {}
+    public int getAcceptStatus() {
+        return ACCEPT_OK;
+    }
 }

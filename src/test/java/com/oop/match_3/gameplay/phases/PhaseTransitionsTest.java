@@ -9,6 +9,10 @@ import static org.hamcrest.Matchers.is;
 
 class PhaseTransitionsTest {
 
+    private Phase currentPhase(Game game) {
+        return game.currentPhase();
+    }
+
     @Test
     void given_startPhase_when_advance_then_inputPhaseAccepted() {
         Game game = new Game();

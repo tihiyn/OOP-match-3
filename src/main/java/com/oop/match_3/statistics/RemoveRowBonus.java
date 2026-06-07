@@ -8,7 +8,9 @@ public class RemoveRowBonus extends Bonus {
     // предусловие: `row` в пределах поля
     public RemoveRowBonus(final UnsignedIntADT row) {}
 
-    public String print() {}
+    public String print() {
+        return "";
+    }
 
     // постусловие: все ячейки `grid` в ряду `row` получили значение Element.NONE
     public void apply(final GridADT grid) {}

@@ -5,7 +5,9 @@ import com.oop.match_3.gameplay.phases.GameADT;
 public class RestartStep extends Step {
     public RestartStep () {}
 
-    public String print() {}
+    public String print() {
+        return "";
+    }
 
     // постусловие: из родительского класса + `game` переведена в StartPhase
     public void execute(final GameADT game) {}

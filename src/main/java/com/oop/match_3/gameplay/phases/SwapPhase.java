@@ -13,7 +13,11 @@ public class SwapPhase extends Phase {
 
     public void accept(final Step step) {}
 
-    public int getAdvanceStatus() {}
+    public int getAdvanceStatus() {
+        return ADVANCE_OK;
+    }
 
-    public int getAcceptStatus() {}
+    public int getAcceptStatus() {
+        return ACCEPT_OK;
+    }
 }
