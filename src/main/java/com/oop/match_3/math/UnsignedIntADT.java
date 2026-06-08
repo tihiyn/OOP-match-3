@@ -16,4 +16,6 @@ public abstract class UnsignedIntADT {
     public abstract UnsignedIntADT multiply(UnsignedIntADT multiplicand);
 
     public abstract int compare(UnsignedIntADT other);
+
+    public abstract Integer toInt();
 }

@@ -28,6 +28,10 @@ public class UnsignedInt extends UnsignedIntADT {
         return value.compareTo(raw(other));
     }
 
+    public Integer toInt() {
+        return value;
+    }
+
     private Integer raw(final UnsignedIntADT other) {
         return ((UnsignedInt) other).value;
     }
