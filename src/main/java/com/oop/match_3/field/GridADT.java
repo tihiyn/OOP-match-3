@@ -5,9 +5,6 @@ public abstract class GridADT {
     public static final int SWAP_OUT_OF_BOUNDS = 2; // хотя бы одна координата вне поля
     public static final int SWAP_NOT_NEIGHBOURS = 3; // координаты не соседние
 
-    public static final int AT_OK = 1;  // последняя at() вернула корректную ячейку
-    public static final int AT_OUT_OF_BOUNDS = 2; // координата вне поля
-
     // конструктор
     // постусловие: создано поле 8x8, заполненное случайными элементами из `factory`, без готовых комбинаций и
     // как минимум одним возможным ходом
@@ -42,5 +39,4 @@ public abstract class GridADT {
     //----------------дополнительные запросы----------------
 
     public abstract int getSwapStatus(); // возвращает значение SWAP_*
-    public abstract int getAtStatus();   // возвращает значение AT_*
 }
