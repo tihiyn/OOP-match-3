@@ -1,23 +1,20 @@
 package com.oop.match_3.gameplay.phases;
 
-import com.oop.match_3.gameplay.steps.Step;
+import com.oop.match_3.gameplay.steps.SwapStep;
 
 public class SwapPhase extends Phase {
+    private final SwapStep step;
 
-    public SwapPhase(final GameADT game) {
+    // постусловие: фаза привязана к игре `game` и хранит `step` для последующего применения в advance()
+    public SwapPhase(final GameADT game, final SwapStep step) {
         super(game);
+        this.step = step;
     }
 
     // постусловие: из родительского класса + Game переведена в FindCombosPhase
-    public void advance() {}
-
-    public void accept(final Step step) {}
-
-    public int getAdvanceStatus() {
-        return ADVANCE_OK;
-    }
-
-    public int getAcceptStatus() {
-        return ACCEPT_OK;
+    public void advance() {
+        step.applyTo(game);
+        game.setPhase(new FindCombosPhase(game));
+        advanceStatus = ADVANCE_OK;
     }
 }

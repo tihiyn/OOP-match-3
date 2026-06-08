@@ -1,6 +1,6 @@
 package com.oop.match_3.gameplay.phases;
 
-import com.oop.match_3.gameplay.steps.Step;
+import com.oop.match_3.field.Combo;
 
 public class FindCombosPhase extends Phase {
 
@@ -11,15 +11,26 @@ public class FindCombosPhase extends Phase {
     // постусловие: из родительского класса + если есть комбинации - Game переведена в ResolveCombosPhase с этими комбинациями,
     // иначе если есть возможные ходы - Game переведена в InputPhase,
     // иначе - Game переведена в EndPhase
-    public void advance() {}
-
-    public void accept(final Step step) {}
-
-    public int getAdvanceStatus() {
-        return ADVANCE_OK;
+    public void advance() {
+        advanceStatus = ADVANCE_OK;
+        Combo[] combos = game.combos();
+        if (hasCombos(combos)) {
+            transitionToResolve(combos);
+            return;
+        }
+        if (game.hasMoves()) {
+            game.setPhase(new InputPhase(game));
+            return;
+        }
+        game.setPhase(new EndPhase(game));
     }
 
-    public int getAcceptStatus() {
-        return ACCEPT_OK;
+    private boolean hasCombos(final Combo[] combos) {
+        return combos.length > 0;
+    }
+
+    private void transitionToResolve(final Combo[] combos) {
+        game.scoreCombos(combos);
+        game.setPhase(new ResolveCombosPhase(game, combos));
     }
 }
