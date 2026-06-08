@@ -12,10 +12,12 @@ public class CrossCombo extends Combo {
         super(cells);
     }
 
+    @Override
     public boolean hasBonus() {
         return true;
     }
 
+    @Override
     public Bonus bonus() {
         bonusStatus = BONUS_OK;
         return new RemoveTypeBonus(Element.A); // FIXME нужно как-то передавать тип элементов комбинации

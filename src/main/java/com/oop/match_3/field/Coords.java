@@ -28,7 +28,7 @@ public class Coords extends CoordsADT {
         return sameCol && sameRow;
     }
 
-    public boolean sameRow(CoordsADT other) {
+    public boolean sameRow(final CoordsADT other) {
         return row.eq(rawRow(other));
     }
 

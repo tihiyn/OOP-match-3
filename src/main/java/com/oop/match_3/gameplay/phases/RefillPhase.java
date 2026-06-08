@@ -7,6 +7,7 @@ public class RefillPhase extends Phase {
     }
 
     // постусловие: из родительского класса + Game переведена в FindCombosPhase
+    @Override
     public void advance() {
         game.refill();
         game.setPhase(new FindCombosPhase(game));

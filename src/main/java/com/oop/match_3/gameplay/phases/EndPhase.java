@@ -9,28 +9,31 @@ public class EndPhase extends Phase {
         super(game);
     }
 
-    // предусловие: интерактивная фаза, advance() недопустима
+    @Override
+    public boolean isTerminal() {
+        return true;
+    }
+
+    @Override
+    public boolean isInteractive() {
+        return true;
+    }
+
+    @Override
     public void advance() {
         advanceStatus = ADVANCE_WRONG_PHASE;
     }
 
     // постусловие: из родительского класса + Game переведена в StartPhase
+    @Override
     public void onRestart(final RestartStep step) {
         game.setPhase(new StartPhase(game));
         acceptStatus = ACCEPT_OK;
     }
 
-    // постусловие: из родительского класса + Game остаётся в EndPhase (терминальное состояние)
+    // постусловие: из родительского класса + Game остаётся в EndPhase
+    @Override
     public void onFinish(final FinishStep step) {
         acceptStatus = ACCEPT_OK;
-    }
-
-    // EndPhase — терминальная фаза, определяет game.isOver()
-    public boolean isTerminal() {
-        return true;
-    }
-
-    public boolean isInteractive() {
-        return true;
     }
 }

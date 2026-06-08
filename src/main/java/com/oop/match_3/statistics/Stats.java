@@ -17,22 +17,27 @@ public class Stats extends StatsADT {
         this.history = new ArrayList<>();
     }
 
+    @Override
     public UnsignedIntADT score() {
         return score;
     }
 
+    @Override
     public UnsignedIntADT movesCount() {
         return new UnsignedInt(history.size());
     }
 
+    @Override
     public String print() {
         return "Score: %d, Moves: %d".formatted(score.toInt(), movesCount().toInt());
     }
 
+    @Override
     public void increment(final UnsignedIntADT points) {
         score = score.add(points);
     }
 
+    @Override
     public void recordStep(final Step step) {
         history.add(step);
     }

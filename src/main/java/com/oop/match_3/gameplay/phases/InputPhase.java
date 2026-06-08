@@ -8,24 +8,28 @@ public class InputPhase extends Phase {
         super(game);
     }
 
-    // предусловие: интерактивная фаза, advance() недопустима
+    @Override
+    public boolean isInteractive() {
+        return true;
+    }
+
+    @Override
     public void advance() {
         advanceStatus = ADVANCE_WRONG_PHASE;
     }
 
-    // постусловие: из родительского класса + если SwapStep - Game переведена в SwapPhase,
-    // если FinishStep - в EndPhase
+    // постусловие: из родительского класса + `game` переведена в SwapPhase
+    @Override
     public void onSwap(final SwapStep step) {
+        game.recordStep(step);
         game.setPhase(new SwapPhase(game, step));
         acceptStatus = ACCEPT_OK;
     }
 
+    // постусловие: из родительского класса + `game` переведена в EndPhase
+    @Override
     public void onFinish(final FinishStep step) {
         game.setPhase(new EndPhase(game));
         acceptStatus = ACCEPT_OK;
-    }
-
-    public boolean isInteractive() {
-        return true;
     }
 }

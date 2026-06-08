@@ -11,6 +11,7 @@ public class ResolveCombosPhase extends Phase {
     }
 
     // постусловие: из родительского класса + Game переведена в GravityPhase
+    @Override
     public void advance() {
         game.resolve(combos);
         game.setPhase(new GravityPhase(game));

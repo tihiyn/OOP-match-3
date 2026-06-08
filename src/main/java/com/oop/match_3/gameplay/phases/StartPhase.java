@@ -7,6 +7,7 @@ public class StartPhase extends Phase {
     }
 
     // постусловие: из родительского класса + Game переведена в InputPhase
+    @Override
     public void advance() {
         game.setPhase(new InputPhase(game));
         advanceStatus = ADVANCE_OK;

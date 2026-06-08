@@ -27,30 +27,35 @@ public class Grid extends GridADT {
         this.swapStatus = SWAP_OK;
     }
 
+    @Override
     public Combo[] combos() {
         return combosOf(cells);
     }
 
+    @Override
     public boolean isStable() {
         return combos().length == 0;
     }
 
+    @Override
     public boolean hasMoves() {
         return hasMovesIn(cells);
     }
 
+    @Override
     public String print() {
         return IntStream.range(0, SIZE)
             .mapToObj(this::printRow)
             .collect(Collectors.joining("\n"));
     }
 
+    @Override
     public void swap(final CoordsADT first, final CoordsADT second) {
         if (outOfBounds(first) || outOfBounds(second)) {
             swapStatus = SWAP_OUT_OF_BOUNDS;
             return;
         }
-        if (notNeighbours(first, second)) {
+        if (!first.isNeighbour(second)) {
             swapStatus = SWAP_NOT_NEIGHBOURS;
             return;
         }
@@ -58,18 +63,24 @@ public class Grid extends GridADT {
         swapStatus = SWAP_OK;
     }
 
+    @Override
     public void resolve(final Combo[] combos) {
         Arrays.stream(combos).forEach(Combo::clear);
     }
 
+    @Override
     public void gravity() {
         IntStream.range(0, SIZE).forEach(this::applyGravityTo);
     }
 
+    @Override
     public void refill() {
-        cells.stream().filter(this::isEmpty).forEach(this::fill);
+        cells.stream()
+            .filter(this::isEmpty)
+            .forEach(cell -> cell.assignElement(factory.generate()));
     }
 
+    @Override
     public int getSwapStatus() {
         return swapStatus;
     }
@@ -82,10 +93,6 @@ public class Grid extends GridADT {
 
     private boolean outOfBounds(final CoordsADT target) {
         return cells.stream().noneMatch(cell -> cell.isAt(target));
-    }
-
-    private boolean notNeighbours(final CoordsADT first, final CoordsADT second) {
-        return !first.isNeighbour(second);
     }
 
     private CellADT cellAt(final CoordsADT target) {
@@ -121,10 +128,6 @@ public class Grid extends GridADT {
 
     private boolean isEmpty(final CellADT cell) {
         return cell.hasSameElementAs(EMPTY);
-    }
-
-    private void fill(final CellADT cell) {
-        cell.assignElement(factory.generate());
     }
 
     private Combo[] combosOf(final List<CellADT> source) {
@@ -164,7 +167,8 @@ public class Grid extends GridADT {
     }
 
     private List<Combo> linearCombos(final List<List<CellADT>> horizontals, final List<List<CellADT>> verticals) {
-        List<List<CellADT>> all = concat(horizontals, verticals);
+        List<List<CellADT>> all = new ArrayList<>(horizontals);
+        all.addAll(verticals);
         return all.stream()
             .filter(run -> isLinear(run, all))
             .map(run -> new LinearCombo(toArray(run)))
@@ -180,10 +184,10 @@ public class Grid extends GridADT {
     }
 
     private boolean isCross(final List<CellADT> first, final List<CellADT> second) {
-        return isOdd(first) && isOdd(second) && sameCenter(first, second);
+        return isOddLength(first) && isOddLength(second) && sameCenter(first, second);
     }
 
-    private boolean isOdd(final List<CellADT> run) {
+    private boolean isOddLength(final List<CellADT> run) {
         return run.size() % 2 == 1;
     }
 
@@ -195,21 +199,15 @@ public class Grid extends GridADT {
         return run.get(run.size() / 2);
     }
 
-    private List<List<CellADT>> concat(final List<List<CellADT>> first, final List<List<CellADT>> second) {
-        List<List<CellADT>> all = new ArrayList<>(first);
-        all.addAll(second);
-        return all;
-    }
-
     private List<List<CellADT>> rows(final List<CellADT> source) {
         return IntStream.range(0, SIZE)
-            .mapToObj(index -> row(source, index))
+            .mapToObj(i -> row(source, i))
             .collect(Collectors.toList());
     }
 
     private List<List<CellADT>> columns(final List<CellADT> source) {
         return IntStream.range(0, SIZE)
-            .mapToObj(index -> column(source, index))
+            .mapToObj(i -> column(source, i))
             .collect(Collectors.toList());
     }
 
@@ -267,7 +265,7 @@ public class Grid extends GridADT {
     private List<CellADT> union(final List<CellADT> first, final List<CellADT> second) {
         return Stream.concat(first.stream(), second.stream())
             .distinct()
-            .collect(Collectors.toList());
+            .toList();
     }
 
     private CellADT[] toArray(final List<CellADT> cells) {
@@ -325,12 +323,8 @@ public class Grid extends GridADT {
 
     private List<CellADT> randomCells() {
         return IntStream.range(0, CELLS_COUNT)
-            .mapToObj(this::newCell)
+            .mapToObj(i -> new Cell(newCoords(i % SIZE, i / SIZE), factory.generate()))
             .collect(Collectors.toList());
-    }
-
-    private CellADT newCell(final int index) {
-        return new Cell(newCoords(index % SIZE, index / SIZE), factory.generate());
     }
 
     private CoordsADT newCoords(final int col, final int row) {

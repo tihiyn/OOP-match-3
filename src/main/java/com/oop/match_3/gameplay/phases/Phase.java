@@ -23,29 +23,42 @@ public abstract class Phase {
         this.acceptStatus = ACCEPT_OK;
     }
 
+    //----------------запросы----------------
+
+    public boolean isTerminal() {
+        return false;
+    }
+
+    public boolean isInteractive() {
+        return false;
+    }
+
     //----------------команды----------------
 
-    // предусловие: автоматическая фаза
-    // постусловие: работа выполнена, Game переведён в следующую фазу,
+    // предусловие: !isInteractive()
+    // постусловие: работа выполнена, game переведён в следующую фазу,
     public abstract void advance();
 
-    //предусловие - интерактивная фаза
-    // постусловие: `step` выполнен, Game переведён в следующую фазу согласно типу Step
+    // предусловие - isInteractive()
+    // постусловие: фаза диспетчеризирована `step`
     public void accept(final Step step) {
         step.dispatchOn(this);
     }
 
-    // постусловие: по умолчанию ставит acceptStatus = ACCEPT_WRONG_PHASE; переопределяется в фазе, принимающей SwapStep
+    // предусловие: фаза принимает SwapStep
+    // постусловие: game переведён в следующую фазу
     public void onSwap(final SwapStep step) {
         acceptStatus = ACCEPT_WRONG_PHASE;
     }
 
-    // постусловие: по умолчанию ставит acceptStatus = ACCEPT_WRONG_PHASE; переопределяется в фазе, принимающей FinishStep
+    // предусловие: фаза принимает FinishStep
+    // постусловие: game переведён в следующую фазу
     public void onFinish(final FinishStep step) {
         acceptStatus = ACCEPT_WRONG_PHASE;
     }
 
-    // постусловие: по умолчанию ставит acceptStatus = ACCEPT_WRONG_PHASE; переопределяется в фазе, принимающей RestartStep
+    // предусловие: фаза принимает RestartStep
+    // постусловие: game переведён в следующую фазу
     public void onRestart(final RestartStep step) {
         acceptStatus = ACCEPT_WRONG_PHASE;
     }
@@ -58,15 +71,5 @@ public abstract class Phase {
 
     public int getAcceptStatus() { // возвращает значение ACCEPT_*
         return acceptStatus;
-    }
-
-    // возвращает true только для терминальной фазы (EndPhase)
-    public boolean isTerminal() {
-        return false;
-    }
-
-    // возвращает true для интерактивной фазы (InputPhase, EndPhase) — ждёт Step, а не advance()
-    public boolean isInteractive() {
-        return false;
     }
 }

@@ -1,4 +1,4 @@
-package com.oop.match_3;
+package com.oop.match_3.client;
 
 import com.oop.match_3.field.Coords;
 import com.oop.match_3.field.CoordsADT;
@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Main {
+public class Console {
     private static final int BOARD_HEIGHT = 8;
     private static final String COLUMN_HEADER = "  A B C D E F G H";
     private static final String RESET = "[0m";
@@ -29,13 +29,13 @@ public class Main {
     private final Game game;
     private final Scanner scanner;
 
-    public Main() {
+    public Console() {
         this.game = new Game();
         this.scanner = new Scanner(System.in);
     }
 
     public static void main(final String[] args) {
-        new Main().run();
+        new Console().run();
     }
 
     private void run() {
@@ -66,7 +66,7 @@ public class Main {
     }
 
     private void printBoardRow(final int index, final String row) {
-        System.out.println((index + 1) + " " + colorize(row));
+        System.out.printf("%d %s\n", index + 1, colorize(row));
     }
 
     private String colorize(final String row) {
@@ -98,7 +98,7 @@ public class Main {
     }
 
     private boolean isFinishCommand(final String input) {
-        return input.equalsIgnoreCase("exit") || input.equalsIgnoreCase("quit") || input.equalsIgnoreCase("q");
+        return input.equalsIgnoreCase("exit") || input.equalsIgnoreCase("q");
     }
 
     private boolean isRestartCommand(final String input) {
@@ -118,7 +118,7 @@ public class Main {
             return;
         }
         if (!first.isNeighbour(second)) {
-            System.out.println("Ячейки должны быть соседями.");
+            System.out.println("Ячейки должны быть соседними.");
             return;
         }
         game.accept(new SwapStep(first, second));
@@ -137,10 +137,11 @@ public class Main {
     }
 
     private void printHelp() {
-        System.out.println("Match-3. Команды:");
-        System.out.println("  <A1> <B1>   — обмен соседними ячейками (A-H, 1-8)");
-        System.out.println("  restart / r — начать заново (в конце игры)");
-        System.out.println("  exit / q    — завершить");
-        System.out.println();
+        System.out.println("""
+        Команды:
+          <A1> <B1>   — обмен соседними ячейками (A-H, 1-8)
+          restart / r — начать заново (в конце игры)
+          exit / q    — завершить
+        """);
     }
 }

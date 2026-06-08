@@ -11,6 +11,7 @@ public class FindCombosPhase extends Phase {
     // постусловие: из родительского класса + если есть комбинации - Game переведена в ResolveCombosPhase с этими комбинациями,
     // иначе если есть возможные ходы - Game переведена в InputPhase,
     // иначе - Game переведена в EndPhase
+    @Override
     public void advance() {
         advanceStatus = ADVANCE_OK;
         Combo[] combos = game.combos();

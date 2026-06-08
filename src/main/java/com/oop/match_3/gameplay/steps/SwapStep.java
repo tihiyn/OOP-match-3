@@ -13,16 +13,19 @@ public class SwapStep extends Step {
         this.second = second;
     }
 
+    @Override
     public String print() {
         return "swap";
     }
 
-    // постусловие: из родительского класса + `game` переведена в SwapPhase
+    // постусловие: из родительского класса + game переведена в SwapPhase
+    @Override
     public void execute(final GameADT game) {
         super.execute(game);
     }
 
-    // постусловие: на `phase` вызван `onSwap(this)`; фаза сама решает, легален ли swap и куда переходить
+    // постусловие: на `phase` вызван `onSwap()`
+    @Override
     public void dispatchOn(final Phase phase) {
         phase.onSwap(this);
     }

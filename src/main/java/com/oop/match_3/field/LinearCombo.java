@@ -16,16 +16,18 @@ public class LinearCombo extends Combo {
         super(cells);
     }
 
+    @Override
     public boolean hasBonus() {
         return size.compare(BONUS_THRESHOLD) >= 0;
     }
 
+    @Override
     public Bonus bonus() {
-        bonusStatus = BONUS_EMPTY;
         if (hasBonus()) {
             bonusStatus = BONUS_OK;
             return chooseBonus();
         }
+        bonusStatus = BONUS_EMPTY;
         return null;
     }
 
@@ -38,6 +40,6 @@ public class LinearCombo extends Combo {
 
     private boolean isHorizontal() {
         Cell first = (Cell) cells[0];
-        return first.sharesRowWith(cells[1]);
+        return first.hasSameRowWith(cells[1]);
     }
 }

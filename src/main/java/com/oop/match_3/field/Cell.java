@@ -11,36 +11,44 @@ public class Cell extends CellADT {
         this.element = element;
     }
 
+    @Override
     public boolean hasSameElementAs(final CellADT other) {
         return element == rawElement(other);
     }
 
+    @Override
     public boolean isAt(final CoordsADT target) {
         return coords.eq(target);
     }
 
-    public boolean sharesRowWith(final CellADT other) {
+    @Override
+    public boolean hasSameRowWith(final CellADT other) {
         return coords.sameRow(rawCoords(other));
     }
 
+    @Override
     public String print() {
-        printStatus = PRINT_OK;
         if (element == Element.NONE) {
             printStatus = PRINT_EMPTY;
+            return element.name();
         }
+        printStatus = PRINT_OK;
         return element.name();
     }
 
+    @Override
     public void swap(final CellADT other) {
-        Element mine = element;
+        Element origin = element;
         assignElement(rawElement(other));
-        other.assignElement(mine);
+        other.assignElement(origin);
     }
 
+    @Override
     public void assignElement(final Element replacement) {
         element = replacement;
     }
 
+    @Override
     public int getPrintStatus() {
         return printStatus;
     }

@@ -12,8 +12,9 @@ public class SwapPhase extends Phase {
     }
 
     // постусловие: из родительского класса + Game переведена в FindCombosPhase
+    @Override
     public void advance() {
-        step.applyTo(game);
+        step.applyTo(game); // FIXME заменить на game.execute()
         game.setPhase(new FindCombosPhase(game));
         advanceStatus = ADVANCE_OK;
     }

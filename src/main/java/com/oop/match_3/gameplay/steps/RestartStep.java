@@ -6,16 +6,19 @@ import com.oop.match_3.gameplay.phases.Phase;
 public class RestartStep extends Step {
     public RestartStep () {}
 
+    @Override
     public String print() {
         return "restart";
     }
 
     // постусловие: из родительского класса + `game` переведена в StartPhase
+    @Override
     public void execute(final GameADT game) {
         super.execute(game);
     }
 
-    // постусловие: на `phase` вызван `onRestart(this)`; фаза сама решает, как реагировать
+    // постусловие: на `phase` вызван `onRestart(this)`
+    @Override
     public void dispatchOn(final Phase phase) {
         phase.onRestart(this);
     }

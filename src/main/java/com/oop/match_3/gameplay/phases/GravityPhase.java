@@ -7,6 +7,7 @@ public class GravityPhase extends Phase {
     }
 
     // постусловие: из родительского класса + Game переведена в RefillPhase
+    @Override
     public void advance() {
         game.gravity();
         game.setPhase(new RefillPhase(game));

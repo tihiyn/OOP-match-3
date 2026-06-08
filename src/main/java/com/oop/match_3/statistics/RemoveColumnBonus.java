@@ -8,10 +8,12 @@ public class RemoveColumnBonus extends Bonus {
     // предусловие: `col` в пределах поля
     public RemoveColumnBonus (final UnsignedIntADT col) {}
 
+    @Override
     public String print() {
         return "удаление столбца";
     }
 
     // постусловие: все ячейки `grid` в столбце `col` получили значение Element.NONE
+    @Override
     public void apply(final GridADT grid) {}
 }
