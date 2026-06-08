@@ -24,4 +24,8 @@ public class InputPhase extends Phase {
         game.setPhase(new EndPhase(game));
         acceptStatus = ACCEPT_OK;
     }
+
+    public boolean isInteractive() {
+        return true;
+    }
 }

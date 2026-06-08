@@ -83,7 +83,7 @@ public class Game extends GameADT {
         stats.recordStep(step);
     }
 
-    Phase currentPhase() {
+    public Phase currentPhase() {
         return phase;
     }
 }

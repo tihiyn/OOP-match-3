@@ -64,4 +64,9 @@ public abstract class Phase {
     public boolean isTerminal() {
         return false;
     }
+
+    // возвращает true для интерактивной фазы (InputPhase, EndPhase) — ждёт Step, а не advance()
+    public boolean isInteractive() {
+        return false;
+    }
 }

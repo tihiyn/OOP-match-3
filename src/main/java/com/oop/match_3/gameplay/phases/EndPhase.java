@@ -29,4 +29,8 @@ public class EndPhase extends Phase {
     public boolean isTerminal() {
         return true;
     }
+
+    public boolean isInteractive() {
+        return true;
+    }
 }
