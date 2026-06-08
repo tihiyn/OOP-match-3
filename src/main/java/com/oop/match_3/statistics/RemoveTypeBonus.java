@@ -7,7 +7,7 @@ public class RemoveTypeBonus extends Bonus {
     public RemoveTypeBonus(final Element type) {}
 
     public String print() {
-        return "";
+        return "удаление типа";
     }
 
     // постусловие: все ячейки `grid` с элементом `type` получили значение Element.NONE
