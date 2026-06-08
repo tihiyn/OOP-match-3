@@ -11,14 +11,14 @@ public abstract class Combo {
     public static final int BONUS_OK = 1; // последний bonus() отработал нормально
     public static final int BONUS_EMPTY = 2; // для данной комбинации бонус отсутствует
 
-    private final CellADT[] cells;
-    private final UnsignedIntADT size;
+    protected final CellADT[] cells;
+    protected final UnsignedIntADT size;
 
     private static final UnsignedIntADT MIN_COMBO_LENGTH = new UnsignedInt(3);
     private static final UnsignedIntADT BASE_POINTS_PER_CELL = new UnsignedInt(10);
     private static final UnsignedIntADT POINTS_PER_CELL_GROWTH = new UnsignedInt(5);
 
-    private int bonusStatus;
+    protected int bonusStatus;
 
     // конструктор
     // предусловие: `cells` содержит не менее 3 ячеек, все ячейки имеют одинаковое значение Element

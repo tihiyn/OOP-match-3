@@ -14,6 +14,8 @@ public abstract class CellADT {
 
     public abstract boolean isAt(final CoordsADT coords);
 
+    public abstract boolean sharesRowWith(final CellADT other);
+
     // предусловие: ячейка не содержит элемент Element.NONE
     public abstract String print();
 

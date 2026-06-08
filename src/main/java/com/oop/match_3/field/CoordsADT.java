@@ -12,4 +12,6 @@ public abstract class CoordsADT {
     public abstract boolean isNeighbour(final CoordsADT other);
 
     public abstract boolean eq(final CoordsADT other);
+
+    public abstract boolean sameRow(final CoordsADT other);
 }

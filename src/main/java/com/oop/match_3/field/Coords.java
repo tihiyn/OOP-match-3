@@ -28,6 +28,10 @@ public class Coords extends CoordsADT {
         return sameCol && sameRow;
     }
 
+    public boolean sameRow(CoordsADT other) {
+        return row.eq(rawRow(other));
+    }
+
     private UnsignedIntADT rawCol(final CoordsADT other) {
         return ((Coords) other).col;
     }

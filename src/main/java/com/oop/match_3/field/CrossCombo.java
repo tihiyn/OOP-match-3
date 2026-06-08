@@ -1,7 +1,7 @@
 package com.oop.match_3.field;
 
-import com.oop.match_3.math.UnsignedIntADT;
 import com.oop.match_3.statistics.Bonus;
+import com.oop.match_3.statistics.RemoveTypeBonus;
 
 public class CrossCombo extends Combo {
     // конструктор
@@ -17,6 +17,7 @@ public class CrossCombo extends Combo {
     }
 
     public Bonus bonus() {
-        return null;
+        bonusStatus = BONUS_OK;
+        return new RemoveTypeBonus(Element.A); // FIXME нужно как-то передавать тип элементов комбинации
     }
 }

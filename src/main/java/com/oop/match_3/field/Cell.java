@@ -19,6 +19,10 @@ public class Cell extends CellADT {
         return coords.eq(target);
     }
 
+    public boolean sharesRowWith(final CellADT other) {
+        return coords.sameRow(rawCoords(other));
+    }
+
     public String print() {
         printStatus = PRINT_OK;
         if (element == Element.NONE) {
@@ -43,5 +47,9 @@ public class Cell extends CellADT {
 
     private Element rawElement(final CellADT other) {
         return ((Cell) other).element;
+    }
+
+    private CoordsADT rawCoords(final CellADT other) {
+        return ((Cell) other).coords;
     }
 }
