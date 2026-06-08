@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is;
 class GridTest {
 
     private Grid freshGrid() {
-        return new Grid(new ElementsFactory());
+        return new Grid(ElementsFactory.instance());
     }
 
     private CoordsADT at(int col, int row) {
