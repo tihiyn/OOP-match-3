@@ -59,3 +59,29 @@ mvn exec:java -Dexec.mainClass=com.oop.match_3.client.Console
 mvn compile
 java -cp target/classes com.oop.match_3.client.Console
 ```
+
+## Скриншоты
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/helper.png" alt="Подсказка по командам" width="420"/><br/>
+      <sub>Подсказка по командам при запуске</sub>
+    </td>
+    <td align="center">
+      <img src="screenshots/init.png" alt="Стартовое поле" width="420"/><br/>
+      <sub>Стартовое поле 8×8</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="screenshots/step.png" alt="Ход игрока" width="420"/><br/>
+      <sub>Ход игрока и срабатывание комбо</sub>
+    </td>
+    <td align="center">
+      <img src="screenshots/terminate.png" alt="Завершение игры" width="420"/><br/>
+      <sub>Прерывание игры</sub>
+    </td>
+  </tr>
+</table>
+
